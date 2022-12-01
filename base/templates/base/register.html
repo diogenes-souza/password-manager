@@ -16,11 +16,12 @@
     Already have an account? <a href="{% url 'login' %}">Login</a>
 </p> -->
 
-<div class="header-bar">
-    <h1>Register</h1>
+<div class="header-bar" style="margin-top: 2rem">
+
 </div>
 
 <div class="card-body">
+    <h2>Register</h2>
     <form method="POST">
         {% csrf_token %}
 
@@ -28,7 +29,7 @@
 
         <input style="margin-top:10px ;" class="button" type="submit" value="Register">
     </form>
-    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    <p style="margin-left: 1rem">Already have an account? <a href="{% url 'login' %}">Login</a></p>
 </div>
 
 
