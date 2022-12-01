@@ -16,17 +16,18 @@
     Don't have an account? <a href="{% url 'register' %}">Register</a>
 </p> -->
 
-<div class="header-bar">
-    <h1>Login</h1>
+<div class="header-bar" style="margin-top: 3rem">
+    
 </div>
 
 <div class="card-body">
+    <h2>Hi, welcome back!</h2>
     <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
         <input class="button" type="submit" value="Login">
     </form>
-    <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+    <p class="no-account-string-style">Don't have an account? <a href="{% url 'register' %}">Register here!</a></p>
 </div>
 
 {% endblock content %}
