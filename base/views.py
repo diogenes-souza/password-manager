@@ -18,8 +18,6 @@ from django.db import transaction
 from .models import Passwords #Meu modelo de dados
 from .forms import PositionForm
 
-# Create your views here.
-
 class CustomLoginView(LoginView):
     template_name = 'base/login.html'
     fields = '__all__'
@@ -27,7 +25,6 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('passwords')
-
 
 class registerPage(FormView):
     template_name = 'base/register.html'
@@ -46,8 +43,6 @@ class registerPage(FormView):
             return redirect('passwords')
         return super(registerPage, self).get(*args, **kwargs)
 
-    
-
 class passwordList(LoginRequiredMixin, ListView):
     model = Passwords
     context_object_name = 'passwords'
@@ -60,16 +55,12 @@ class passwordList(LoginRequiredMixin, ListView):
         else:
             passwords = Passwords.objects.all().filter(user=self.request.user)
 
-
         return passwords
-        
     
 class passwordDetail(LoginRequiredMixin, DetailView):
     model = Passwords
     context_object_name = 'password'
     template_name = 'base/password.html'
-
-
 
 class passwordCreate(LoginRequiredMixin, CreateView):
     model = Passwords
@@ -80,7 +71,6 @@ class passwordCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super(passwordCreate, self).form_valid(form)
 
-
 class passwordUpdate(LoginRequiredMixin, UpdateView):
     model = Passwords
     fields = ['siteTitle','websiteLink','websiteUser','websiteEmail','websitePassword']
@@ -90,7 +80,6 @@ class DeleteView(LoginRequiredMixin, DeleteView):
     model = Passwords
     context_object_name = 'password'
     success_url = reverse_lazy('passwords') #valor de re-direcionamento
-
 
 class passwordReorder(View):
     def post(self, request):
