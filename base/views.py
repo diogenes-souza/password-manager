@@ -6,6 +6,10 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
 
+from django.http import JsonResponse
+from django.core import serializers
+import json
+
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
@@ -92,3 +96,22 @@ class passwordReorder(View):
                 self.request.user.set_password_order(positionList)
 
         return redirect(reverse_lazy('passwords'))
+
+
+
+def expJson(request):
+    # result = json.dumps(Passwords.objects, indent=4)
+    # print(result)
+    # data = str(resultado).encode('utf-8')
+    # data = data.decode('utf-8')
+    # # print(data)
+    # context = {
+    #     'user': request.user,
+    #     'objLog': objLog,
+    #     'resultado': resultado,
+    # }
+    # return render(request, "./passwordList.json", context)
+
+    data = list(Passwords.objects.siteTitle)
+    print(data)
+    return JsonResponse(data, safe=False)
