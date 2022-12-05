@@ -112,6 +112,6 @@ def expJson(request):
     # }
     # return render(request, "./passwordList.json", context)
 
-    data = list(Passwords.objects.siteTitle)
+    data = list(Passwords.objects.values())
     print(data)
     return JsonResponse(data, safe=False)
