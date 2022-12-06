@@ -8,7 +8,6 @@ from django.urls import reverse_lazy
 
 from django.http import JsonResponse
 from django.core import serializers
-import json
 
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -97,8 +96,6 @@ class passwordReorder(View):
 
         return redirect(reverse_lazy('passwords'))
 
-
-
 def expJson(request):
     # result = json.dumps(Passwords.objects, indent=4)
     # print(result)
@@ -114,4 +111,14 @@ def expJson(request):
 
     data = list(Passwords.objects.values())
     print(data)
-    return JsonResponse(data, safe=False)
+    html = f"""
+    <html>
+        <body>
+            <p>{data}</p>
+        </body>
+    </html>"""
+    
+    htmlFile = open("teste.html", "w", encoding="utf8")
+    htmlFile.write(html)
+    htmlFile.close()
+    return JsonResponse(data,safe=False)
